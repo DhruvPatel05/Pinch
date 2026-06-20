@@ -14,6 +14,7 @@ struct ContentView: View {
     // MARK: - PROPERTY
     @State private var isAnimating: Bool = false
     @State private var imageScale:CGFloat = 1
+    @State private var  imageOffset:CGSize = CGSize(width: 0, height: 0)
     
     // MARK: - FUNCTION
     
@@ -30,6 +31,7 @@ struct ContentView: View {
                     .padding()
                     .shadow(color:.black.opacity(0.2),radius: 12,x:2,y:2)
                     .opacity(isAnimating ? 1:0)
+                    .offset(x:imageOffset.width,y:imageOffset.height)
                     .scaleEffect(imageScale)
                 // MARK: - Tap Gesture
                     .onTapGesture(count:2,perform: {
@@ -43,6 +45,18 @@ struct ContentView: View {
                             }
                         }
                     })
+                // MARK: - Drag Gesture
+                    .gesture(
+                        DragGesture()
+                            .onChanged {
+                                value in
+                                withAnimation(.linear(duration: 1)) {
+                                    imageOffset = value.translation
+                                    
+                                }
+                            }
+                    )
+                
             }//: ZSTACK
             .navigationTitle("Pinch & Zoom")
             .navigationBarTitleDisplayMode(.inline)
