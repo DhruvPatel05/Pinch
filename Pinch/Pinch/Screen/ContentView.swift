@@ -81,6 +81,25 @@ struct ContentView: View {
                     .padding(.horizontal)
                     .padding(.top,30)
                 ,alignment: .top)
+            // MARK: - CONTROL
+            .overlay(
+                Group {
+                    HStack {
+                        // SCALE DOWN
+                        Button {
+                            //Some Action
+                            
+                        } label : {
+                            ControlImageView(icon: "minus.magnifyingglass")
+                        }
+                        // RESET
+                        
+                        // SCALE UP
+                        
+                    }//: CONTROLS
+                }
+                    .padding(.bottom,30)
+                ,alignment:.bottom)
             
         }//: NAVIGATION
     }
