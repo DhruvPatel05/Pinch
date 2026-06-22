@@ -17,6 +17,9 @@ struct ContentView: View {
     @State private var  imageOffset:CGSize = CGSize(width: 0, height: 0)
     @State private var isDrawerOpen:Bool = false
     
+    let pages: [Page] = pagesData
+    @State private var pageIndex: Int = 1
+    
     // MARK: - FUNCTION
     func resetImageState() {
         return withAnimation(.spring()) {
@@ -32,7 +35,7 @@ struct ContentView: View {
                 Color.clear
                 
              // MARK: - PAGE IMAGE
-                Image("magazine-front-cover")
+                Image(pages[pageIndex - 1].imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(10)
@@ -137,7 +140,7 @@ struct ContentView: View {
             .overlay(
                 HStack(spacing:12) {
                     // MARK: - DRAWER HANDLE
-                    Image(systemName: "chevron.compact.left")
+                    Image(systemName: isDrawerOpen ? "chevron.compact.right" : "chevron.compact.left")
                         .resizable()
                         .scaledToFit()
                         .frame(height:40)
@@ -149,6 +152,14 @@ struct ContentView: View {
                             }
                         })
                     // MARK: - THUMBNAILS
+                    ForEach(pages) { item in
+                        Image(item.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:80)
+                            .cornerRadius(8)
+                            .shadow(radius: 4)
+                    }
                     Spacer()
                 }//: DRAWER
                     .padding(EdgeInsets(top:16,leading:8,bottom:16,trailing:8))
