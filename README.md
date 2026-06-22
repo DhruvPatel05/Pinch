@@ -93,3 +93,9 @@ Dhruv Patel
 
 - LinkedIn: https://www.linkedin.com/in/dhruv-patel-csm/
 - GitHub: https://github.com/DhruvPatel05
+
+---
+
+## Support
+
+If you like this project, please consider giving it a star ⭐
