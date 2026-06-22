@@ -153,12 +153,18 @@ struct ContentView: View {
                         })
                     // MARK: - THUMBNAILS
                     ForEach(pages) { item in
-                        Image(item.imageName)
+                        Image(item.thumbnailName)
                             .resizable()
                             .scaledToFit()
                             .frame(width:80)
                             .cornerRadius(8)
                             .shadow(radius: 4)
+                            .opacity(isDrawerOpen ? 1 : 0)
+                            .animation(.easeOut(duration:0.5), value:isDrawerOpen)
+                            .onTapGesture (perform: {
+                                isAnimating = true
+                                pageIndex = item.id
+                            })
                     }
                     Spacer()
                 }//: DRAWER
